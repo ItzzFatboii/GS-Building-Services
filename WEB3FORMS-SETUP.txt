@@ -1,0 +1,37 @@
+G.S BUILDING SERVICES – DIRECT WEBSITE LEADS
+
+The website is configured to send estimator leads directly to:
+g.sbuildingserviceswv@gmail.com
+
+Provider: Web3Forms
+Docs: https://docs.web3forms.com/getting-started/installation
+
+ONE-TIME SETUP:
+1. Go to https://web3forms.com/
+2. Create an access key using the business email address above.
+3. Open script.js in this website package.
+4. Find:
+   const WEB3FORMS_ACCESS_KEY='YOUR_WEB3FORMS_ACCESS_KEY';
+5. Replace the placeholder with your Web3Forms access key.
+6. Save and upload the complete website.
+
+The access key is intended for client-side use by Web3Forms; do NOT put your Gmail password,
+mailbox password, or SMTP password in the website.
+
+The owner email will receive:
+- Customer name, phone, email and area/postcode
+- Project type
+- Customer-facing estimate
+- PRIVATE INTERNAL PLANNING FIGURE
+- All estimator answers
+- Customer notes
+
+The private internal planning figure is never displayed in the customer-facing result.
+
+IMPORTANT:
+The internal figure is a guide-based planning figure, not a guaranteed material cost or formal quote.
+You should still check current merchant prices, site conditions, waste, access, drainage, structural work
+and other project-specific costs before issuing your formal price.
+
+The direct email service requires the one-time Web3Forms access key because a static website cannot
+safely contain your mailbox password or run its own mail server.

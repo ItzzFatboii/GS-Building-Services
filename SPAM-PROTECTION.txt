@@ -1,0 +1,3 @@
+G.S BUILDING SERVICES – SPAM PROTECTION
+
+Invisible honeypot field + minimum 2.5 second submission time are enabled on the lead form. Web3Forms remains the email delivery layer. No visible CAPTCHA is required for genuine customers.

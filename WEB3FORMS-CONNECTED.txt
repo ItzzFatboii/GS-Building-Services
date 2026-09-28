@@ -1,0 +1,5 @@
+G.S Building Services lead form
+
+Web3Forms access key has been installed in script.js.
+The form is configured to submit estimator leads directly through Web3Forms.
+Do not replace the key with a Gmail password or SMTP password.
