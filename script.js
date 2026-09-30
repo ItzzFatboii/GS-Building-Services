@@ -21,7 +21,8 @@ const data={
   ['access','How is access?',['Easy access','Restricted access','Very difficult access','Not sure']]
  ],
  extension:[
-  ['area','Approximate extension floor area (m²)?','number'],
+  ['area','Approximate extension footprint per floor (m²)?','number'],
+  ['storeys','How many storeys will the extension have?',['Single storey','Two storey']],
   ['spec','What build level are you looking for?',['Basic','Mid / standard','High-end / complex']],
   ['scope','What would you like estimated?',['Shell to wall plate','Full build including materials']],
   ['ground','How straightforward are the foundations and drainage?',['Straightforward','Potentially complex / unknown']],
@@ -110,13 +111,23 @@ function estimate(){
   if(s.type==='Foundation blockwork'||s.type==='Retaining blockwork')notes.push('Foundation/retaining requirements depend on ground and structural conditions.');
  }
  if(branch==='extension'){
-  const m=+s.area||0;
+  const footprint=+s.area||0;
+  const storeyMultiplier=s.storeys==='Two storey'?2:1;
+  const m=footprint*storeyMultiplier;
   let r;
-  if(s.scope==='Shell to wall plate')r={Basic:[450,550],'Mid / standard':[600,750],'High-end / complex':[800,1000]}[s.spec];
-  else r={Basic:[2000,2800],'Mid / standard':[2800,3800],'High-end / complex':[4000,6000]}[s.spec];
-  low=m*r[0];high=m*r[1];
+  if(s.scope==='Shell to wall plate'){
+   r={Basic:[450,550],'Mid / standard':[600,750],'High-end / complex':[800,1000]}[s.spec];
+   low=m*r[0];high=m*r[1];
+   if(s.storeys==='Two storey')notes.push('Two-storey shell uses the existing shell-to-wall-plate rate; no separate two-storey shell rate is currently defined in the pricing guide.');
+  }else{
+   r=s.storeys==='Two storey'
+    ? {Basic:[1700,2400],'Mid / standard':[2400,3300],'High-end / complex':[3400,5200]}[s.spec]
+    : {Basic:[2000,2800],'Mid / standard':[2800,3800],'High-end / complex':[4000,6000]}[s.spec];
+   low=m*r[0];high=m*r[1];
+  }
   const a=access();low*=a[0];high*=a[1];
   if(a[0]>1)notes.push('Restricted-access allowance applied.');
+  if(s.storeys==='Two storey')notes.push('Two-storey pricing uses total new floor area across both floors; no additional 1.15× storey multiplier is applied.');
   notes.push('Steels, glazing, roof complexity, foundations and drainage are subject to site assessment.');
   if(s.ground!=='Straightforward')notes.push('Unknown groundwork/drainage is not fixed in this estimate.');
  }
